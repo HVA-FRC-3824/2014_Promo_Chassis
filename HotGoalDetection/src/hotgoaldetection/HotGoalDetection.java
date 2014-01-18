@@ -26,7 +26,7 @@ import static org.opencv.imgproc.Imgproc.GaussianBlur;
 public class HotGoalDetection {
     
     private static int counter = 0;
-    private static Mat gray, hsv, filter, dst, img;
+    private static Mat gray, hsv, filter, img;
 
     /**
      * @param args the command line arguments
@@ -39,7 +39,7 @@ public class HotGoalDetection {
         Webcam.ImagePanel panel3 = Webcam.createPanel(filter, "filter");
         
         gray = new Mat(); hsv = new Mat();
-        filter = new Mat(); dst = new Mat();
+        filter = new Mat();
                 
         //GaussianBlur(img, img, new Size(3,3), 2, 2);
         
