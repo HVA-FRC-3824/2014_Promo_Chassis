@@ -49,6 +49,8 @@ public class HotGoalDetection {
             Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
             
             Core.inRange(img, new Scalar(120, 170, 10), new Scalar(160, 240, 40), filter);
+            Core.inRange(hsv, new Scalar(cWindow.get_hLower(), cWindow.get_sLower(), cWindow.get_vLower()), 
+                    new Scalar(cWindow.get_hUpper(), cWindow.get_sUpper(), CameraWindow.get_vUpper()), hsv);
         
             panel.updateImage(toBufferedImage(img));
             panel2.updateImage(toBufferedImage(hsv));
