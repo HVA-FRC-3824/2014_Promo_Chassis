@@ -12,7 +12,7 @@ import org.usfirst.frc3824.PromoChassis.commands.DrivetrainNormalDrive;
 import org.usfirst.frc3824.PromoChassis.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc3824.PromoChassis2014.Constants;
+import org.usfirst.frc3824.PromoChassis.Constants;
 /**
  *
  */

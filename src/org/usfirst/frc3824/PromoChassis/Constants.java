@@ -1,4 +1,4 @@
-package org.usfirst.frc3824.PromoChassis2014;
+package org.usfirst.frc3824.PromoChassis;
 
 /**
  * Put any important constants here.
