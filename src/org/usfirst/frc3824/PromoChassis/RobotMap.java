@@ -45,21 +45,19 @@ public class RobotMap {
         drivetrainRearRight = new Talon(1, 3);
 	LiveWindow.addActuator("Drivetrain", "Rear Right", (Talon) drivetrainRearRight);
         
-        drivetrainRearLeft = new Victor(1, 4);
-	LiveWindow.addActuator("Drivetrain", "Rear Left", (Victor) drivetrainRearLeft);
+        drivetrainRearLeft = new Talon(1, 4);
+	LiveWindow.addActuator("Drivetrain", "Rear Left", (Talon) drivetrainRearLeft);
         
         drivetrainHolonomicDrive = new RobotDrive(drivetrainFrontLeft, drivetrainRearLeft,
               drivetrainFrontRight, drivetrainRearRight);
 	
-        drivetrainHolonomicDrive.setSafetyEnabled(true);
+        drivetrainHolonomicDrive.setSafetyEnabled(false);
         drivetrainHolonomicDrive.setExpiration(0.1);
         drivetrainHolonomicDrive.setSensitivity(0.5);
         drivetrainHolonomicDrive.setMaxOutput(1.0);
-        drivetrainHolonomicDrive.setInvertedMotor(RobotDrive.MotorType.kFrontRight, true);
-        drivetrainHolonomicDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);
         drivetrainGyro = new Gyro(1, 1);
 	LiveWindow.addSensor("Drivetrain", "Gyro", drivetrainGyro);
-        drivetrainGyro.setSensitivity(0.0070);
+        drivetrainGyro.setSensitivity(0.007);
         shooterShootSolenoid1 = new Solenoid(1, 1);
 	LiveWindow.addActuator("Shooter", "Shoot Solenoid 1", shooterShootSolenoid1);
         
