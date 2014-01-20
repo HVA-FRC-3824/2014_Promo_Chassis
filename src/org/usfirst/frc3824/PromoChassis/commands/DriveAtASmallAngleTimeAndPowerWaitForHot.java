@@ -10,6 +10,7 @@
 
 
 package org.usfirst.frc3824.PromoChassis.commands;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -18,6 +19,21 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAtASmallAngleTimeAndPowerWaitForHot extends CommandGroup {
     
     public  DriveAtASmallAngleTimeAndPowerWaitForHot() {
+        Timer timer = new Timer();
+        timer.reset();
+        timer.stop();
+        timer.start();
+        addSequential(new LocateHotGoal());
+        /*if(The left goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at right goal
+        }
+          if(The right goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at left goal
+        }
+        */
+        addSequential(new ShootBall());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

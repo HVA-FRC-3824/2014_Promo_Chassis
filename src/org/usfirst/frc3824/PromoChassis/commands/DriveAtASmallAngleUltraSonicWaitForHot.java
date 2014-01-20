@@ -18,6 +18,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAtASmallAngleUltraSonicWaitForHot extends CommandGroup {
     
     public  DriveAtASmallAngleUltraSonicWaitForHot() {
+        ////Note: Wait for Ultra-Sonic command
+        addSequential(new LocateHotGoal());
+        /*if(The left goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at right goal
+        }
+          if(The right goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at left goal
+        }
+        */
+        addSequential(new ShootBall());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

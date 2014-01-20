@@ -18,6 +18,18 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveAtASmallAngleVisionDriveAtHotGoal extends CommandGroup {
     
     public  DriveAtASmallAngleVisionDriveAtHotGoal() {
+        //Note: Needs vision command
+        addSequential(new LocateHotGoal());
+        /*if(The left goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at left goal
+        }
+          if(The right goal is hot){
+          addSequential(new DriveAtAngle());
+          Needs parameters to drive at right goal
+        }
+        */
+        addSequential(new ShootBall());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

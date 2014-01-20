@@ -18,6 +18,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveInFrontOfBoxUltraSonicWaitForHot extends CommandGroup {
     
     public  DriveInFrontOfBoxUltraSonicWaitForHot() {
+        //Note: Wait for Ultra-Sonic command
+        addSequential(new LocateHotGoal());
+        /*If(The left goal is hot){
+         addSequential(new DriveRightBox());
+         }
+          If(The Right goal is hot){
+          addSequential(new DriveLeftBox());
+         }
+         addSequential(new waittimer)
+         */       
+        addSequential(new ShootBall());       
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
