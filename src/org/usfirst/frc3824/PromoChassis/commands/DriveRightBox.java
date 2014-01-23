@@ -23,6 +23,9 @@ public class  DriveRightBox extends Command {
     }
     // Called just before this Command runs the first time
     protected void initialize() {
+        DriveStraight drive = new DriveStraight(4.0, 3.0, 45.0);
+        drive.initialize();
+        
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

@@ -26,7 +26,7 @@ import static org.opencv.imgproc.Imgproc.GaussianBlur;
 public class HotGoalDetection {
     
     private static int counter = 0;
-    private static Mat gray, hsv, filter, img;
+    private static Mat gray, hsv, dst, filter, img;
 
     /**
      * @param args the command line arguments
@@ -34,12 +34,13 @@ public class HotGoalDetection {
     public static void main(String[] args) throws IOException {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
         img = Highgui.imread("C:\\Users\\FIRST\\Documents\\NetBeansProjects\\2014_Promo_Chassis\\Robot-26ft.png", CV_LOAD_IMAGE_COLOR);
+        CameraWindow cWindow = new CameraWindow();
         ImagePanel panel = Webcam.createPanel(img, "img");
         Webcam.ImagePanel panel2 = Webcam.createPanel(img, "hsv");
         Webcam.ImagePanel panel3 = Webcam.createPanel(filter, "filter");
         
         gray = new Mat(); hsv = new Mat();
-        filter = new Mat();
+        filter = new Mat(); dst = new Mat();
                 
         //GaussianBlur(img, img, new Size(3,3), 2, 2);
         
@@ -50,7 +51,7 @@ public class HotGoalDetection {
             
             Core.inRange(img, new Scalar(120, 170, 10), new Scalar(160, 240, 40), filter);
             Core.inRange(hsv, new Scalar(cWindow.get_hLower(), cWindow.get_sLower(), cWindow.get_vLower()), 
-                    new Scalar(cWindow.get_hUpper(), cWindow.get_sUpper(), CameraWindow.get_vUpper()), hsv);
+                    new Scalar(cWindow.get_hUpper(), cWindow.get_sUpper(), cWindow.get_vUpper()), hsv);
         
             panel.updateImage(toBufferedImage(img));
             panel2.updateImage(toBufferedImage(hsv));

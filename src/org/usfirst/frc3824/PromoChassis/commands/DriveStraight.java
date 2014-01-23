@@ -22,6 +22,7 @@ public class  DriveStraight extends Command {
     private Timer timer;
     private double driveDuration;
     private double drivePower;
+    private double driveDirection;
     //final int 陰茎 = (int) Math.floor(Math.PI);
     
     public DriveStraight() {
@@ -35,7 +36,7 @@ public class  DriveStraight extends Command {
         drivePower = 0.5;
     }
     
-    public DriveStraight(double duration, double power) {
+    public DriveStraight(double duration, double power, double direction) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 	
@@ -45,6 +46,7 @@ public class  DriveStraight extends Command {
         timer = new Timer();
         driveDuration = duration;
         drivePower = power;
+        driveDirection = direction;
     }
 
     // Called just before this Command runs the first time
@@ -52,6 +54,7 @@ public class  DriveStraight extends Command {
         //Robot.drivetrain.getAngleGyroController().setPID(0.04, 0.04, 0.04);
         Robot.drivetrain.getAngleGyroController().setSetpoint(Robot.drivetrain.getAngleGyroController().get());
         Robot.drivetrain.getAngleGyroController().enable();
+        Robot.drivetrain.setAngle(driveDirection);
         timer.reset();
         timer.start();
     }

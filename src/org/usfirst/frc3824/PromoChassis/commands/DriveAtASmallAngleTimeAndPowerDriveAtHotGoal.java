@@ -21,9 +21,11 @@ public class DriveAtASmallAngleTimeAndPowerDriveAtHotGoal extends CommandGroup {
     public  DriveAtASmallAngleTimeAndPowerDriveAtHotGoal() {
         Timer timer = new Timer();
         timer.reset();
-        timer.stop();
         timer.start();
-        addSequential(new LocateHotGoal());
+        timer.stop();
+        addSequential(new DriveStraight(3.0, 0.3, 45.0));
+        
+        //addSequential(new LocateHotGoal());
         /*if(The left goal is hot){
           addSequential(new DriveAtAngle());
           Needs parameters to drive at left goal
@@ -33,7 +35,7 @@ public class DriveAtASmallAngleTimeAndPowerDriveAtHotGoal extends CommandGroup {
           Needs parameters to drive at right goal
         }
         */
-        addSequential(new ShootBall());
+        //addSequential(new ShootBall());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
