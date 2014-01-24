@@ -18,6 +18,9 @@ import org.opencv.highgui.Highgui;
 import static org.opencv.highgui.Highgui.CV_LOAD_IMAGE_COLOR;
 import org.opencv.imgproc.Imgproc;
 import static org.opencv.imgproc.Imgproc.GaussianBlur;
+import static org.opencv.imgproc.Imgproc.erode;
+import static org.opencv.imgproc.Imgproc.moments;
+import org.opencv.imgproc.Moments;
 
 /**
  *
@@ -26,36 +29,42 @@ import static org.opencv.imgproc.Imgproc.GaussianBlur;
 public class HotGoalDetection {
     
     private static int counter = 0;
-    private static Mat gray, hsv, dst, filter, img;
+    private static Mat binary, hsv, dst, filter, img;
+    private static Moments moment;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
-        img = Highgui.imread("C:\\Users\\FIRST\\Documents\\NetBeansProjects\\2014_Promo_Chassis\\Robot-26ft.png", CV_LOAD_IMAGE_COLOR);
-        CameraWindow cWindow = new CameraWindow();
-        ImagePanel panel = Webcam.createPanel(img, "img");
+        img = Highgui.imread("..\\Robot-26ft.png", CV_LOAD_IMAGE_COLOR);
+        //CameraWindow cWindow = new CameraWindow();
+        //cWindow.setVisible(true);
+        Webcam.ImagePanel panel = Webcam.createPanel(img, "img");
         Webcam.ImagePanel panel2 = Webcam.createPanel(img, "hsv");
-        Webcam.ImagePanel panel3 = Webcam.createPanel(filter, "filter");
+        //Webcam.ImagePanel panel3 = Webcam.createPanel(filter, "filter");
         
-        gray = new Mat(); hsv = new Mat();
+        binary = new Mat(); hsv = new Mat();
         filter = new Mat(); dst = new Mat();
                 
-        //GaussianBlur(img, img, new Size(3,3), 2, 2);
+        GaussianBlur(img, img, new Size(3,3), 2, 2);
         
         while(true) {
             
             Imgproc.cvtColor(img, hsv, Imgproc.COLOR_BGR2HSV);
-            Imgproc.cvtColor(img, gray, Imgproc.COLOR_BGR2GRAY);
             
-            Core.inRange(img, new Scalar(120, 170, 10), new Scalar(160, 240, 40), filter);
-            Core.inRange(hsv, new Scalar(cWindow.get_hLower(), cWindow.get_sLower(), cWindow.get_vLower()), 
-                    new Scalar(cWindow.get_hUpper(), cWindow.get_sUpper(), cWindow.get_vUpper()), hsv);
-        
+            //Core.inRange(img, new Scalar(120, 170, 10), new Scalar(160, 240, 40), filter);
+            //Core.inRange(hsv, new Scalar(cWindow.get_hLower(), cWindow.get_sLower(), cWindow.get_vLower()), new Scalar(cWindow.get_hUpper(), cWindow.get_sUpper(), cWindow.get_vUpper()), hsv);
+            Core.inRange(hsv, new Scalar(40, 52, 64), new Scalar(97, 255, 255), binary);
+            erode(binary, binary, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3,3)));
+            
+            //moment = moments(binary);
+            
+            //System.out.println("Moments: " + moment.get_m00());
+                 
             panel.updateImage(toBufferedImage(img));
-            panel2.updateImage(toBufferedImage(hsv));
-            panel3.updateImage(toBufferedImage(filter));
+            panel2.updateImage(toBufferedImage(binary));
+           // panel3.updateImage(toBufferedImage(filter));
         }
     }
     
