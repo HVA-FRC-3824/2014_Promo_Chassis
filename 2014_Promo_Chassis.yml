@@ -105,7 +105,7 @@ Children:
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.5,
           name: Sensitivity, validators: null, value: 0.5}
         Right Front Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Front Motor Inverted, validators: null, value: false}
+          default: false, name: Right Front Motor Inverted, validators: null, value: true}
         Safety Enabled: !!robotbuilder.data.properties.BooleanProperty {default: true,
           name: Safety Enabled, validators: null, value: false}
         Left Front Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
@@ -119,7 +119,7 @@ Children:
         Maximum Output: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Maximum Output, validators: null, value: 1.0}
         Right Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
-          default: false, name: Right Rear Motor Inverted, validators: null, value: false}
+          default: false, name: Right Rear Motor Inverted, validators: null, value: true}
         Left Rear Motor Inverted: !!robotbuilder.data.properties.BooleanProperty {
           default: false, name: Left Rear Motor Inverted, validators: null, value: false}
         Right Rear Motor: !!robotbuilder.data.properties.ChildSelectionProperty
