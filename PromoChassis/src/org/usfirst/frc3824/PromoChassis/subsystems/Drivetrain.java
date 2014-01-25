@@ -60,6 +60,16 @@ public class Drivetrain extends Subsystem {
         holonomicDrive.mecanumDrive_Polar(magnitude, direction, angle);
     }
     
+    public void straightHolonomicDrive(double x, double y, double rotation)
+    {
+        holonomicDrive.mecanumDrive_Cartesian(x, y, rotation, gyro.getAngle());
+    }
+    
+    public double get_Gyro_Value()
+    {
+        return gyro.getAngle();
+    }
+    
     /**
      * Only to be used while controlled by PID controller
      */
