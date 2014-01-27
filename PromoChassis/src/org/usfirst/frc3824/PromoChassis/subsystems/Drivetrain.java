@@ -9,12 +9,10 @@
 // it from being updated in th future.
 package org.usfirst.frc3824.PromoChassis.subsystems;
 
-import org.usfirst.frc3824.PromoChassis.commands.DrivetrainNormalDrive;
 import org.usfirst.frc3824.PromoChassis.RobotMap;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc3824.PromoChassis.Constants;
-import org.usfirst.frc3824.PromoChassis.commands.DriveStraight;
 
 /**
  *
@@ -33,9 +31,9 @@ public class Drivetrain extends Subsystem
     private AnglePIDOutput angleOutput = new AnglePIDOutput();
     private PIDController angleGyroController
             = new PIDController(Constants.DrivetrainAngleGyroControllerP,
-                    Constants.DrivetrainAngleGyroControllerI,
-                    Constants.DrivetrainAngleGyroControllerD,
-                    gyro, angleOutput);
+                                Constants.DrivetrainAngleGyroControllerI,
+                                Constants.DrivetrainAngleGyroControllerD,
+                                gyro, angleOutput);
     //PIDController powerUltSndController = new PIDController(Kp, Ki, Kd, , angleOutput);
     //used as the value for drive while running under PIDControl. Those values
     //not set by the controller can be set by a command directly
