@@ -9,6 +9,7 @@ package hotgoaldetection;
 import hotgoaldetection.Webcam.ImagePanel;
 import static hotgoaldetection.Webcam.toBufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Date;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -29,8 +30,8 @@ import org.opencv.imgproc.Moments;
 public class HotGoalDetection {
     
     private static int counter = 0;
+    private static boolean direction = false; // left=false  right=true
     private static Mat binary, hsv, dst, filter, img;
-    private static Moments moment;
 
     /**
      * @param args the command line arguments
@@ -50,7 +51,6 @@ public class HotGoalDetection {
         GaussianBlur(img, img, new Size(3,3), 2, 2);
         
         while(true) {
-            
             Imgproc.cvtColor(img, hsv, Imgproc.COLOR_BGR2HSV);
             
             //Core.inRange(img, new Scalar(120, 170, 10), new Scalar(160, 240, 40), filter);
@@ -58,10 +58,36 @@ public class HotGoalDetection {
             Core.inRange(hsv, new Scalar(40, 52, 64), new Scalar(97, 255, 255), binary);
             erode(binary, binary, Imgproc.getStructuringElement(Imgproc.MORPH_RECT, new Size(3,3)));
             
-            //moment = moments(binary);
+            double[] condensedMat = new double[binary.width()];
+            for(int y = 0; y<binary.size().width; y++)
+            {
+                double totalX = 0;
+                for(int x = 0; x<binary.size().height; x++)
+                {
+                    if(binary.get(x,y)[0] == 255.0)
+                        totalX++;
+                    //System.out.println(java.util.Arrays.toString(binary.get(x,y)));
+                }
+                condensedMat[y] = totalX;
+            }
+            double[] rightOfMat = Arrays.copyOfRange(condensedMat, 0, (condensedMat.length/2)-1);
+            double[] leftOfMat = Arrays.copyOfRange(condensedMat, condensedMat.length/2, condensedMat.length);
+            double totalRight = 0, totalLeft = 0;
             
-            //System.out.println("Moments: " + moment.get_m00());
-                 
+            for(double s : rightOfMat)
+                totalRight += s;
+            for(double s : leftOfMat)
+                totalLeft += s;
+            
+            //System.out.println(totalRight + ", " + totalLeft);
+            
+            if(totalRight > totalLeft)
+                direction = true;
+            else
+                direction = false;
+                
+            totalLeft = 0; totalRight = 0;
+            
             panel.updateImage(toBufferedImage(img));
             panel2.updateImage(toBufferedImage(binary));
            // panel3.updateImage(toBufferedImage(filter));

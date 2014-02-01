@@ -46,7 +46,7 @@ public class DriveStraight extends Command
     // Called just before this Command runs the first time
     protected void initialize()
     {
-        Robot.drivetrain.getAngleGyroController().setSetpoint(Robot.drivetrain.get_Gyro_Value());
+        Robot.drivetrain.getAngleGyroController().setSetpoint(Robot.drivetrain.getGyroValue());
         Robot.drivetrain.setDirection(driveDirection);
         Robot.drivetrain.setMagnitude(drivePower);
         Robot.drivetrain.getAngleGyroController().reset();

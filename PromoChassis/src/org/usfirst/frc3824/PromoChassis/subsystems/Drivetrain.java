@@ -63,7 +63,8 @@ public class Drivetrain extends Subsystem
     {
         holonomicDrive.mecanumDrive_Cartesian(x, y, rotation, gyro.getAngle());
     }
-    public double get_Gyro_Value()
+
+    public double getGyroValue()
     {
         return gyro.getAngle();
     }

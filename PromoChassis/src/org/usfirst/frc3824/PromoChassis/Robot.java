@@ -91,7 +91,7 @@ public class Robot extends IterativeRobot
     public void teleopPeriodic()
     {
         // Print out sensor information
-        SmartDashboard.putNumber("Gyro", Robot.drivetrain.get_Gyro_Value());
+        SmartDashboard.putNumber("Gyro", Robot.drivetrain.getGyroValue());
         Scheduler.getInstance().run();
     }
     /**
